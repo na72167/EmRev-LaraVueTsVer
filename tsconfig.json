@@ -1,0 +1,32 @@
+{
+  // tsconfig.jsonの全オプションを理解する（随時追加中）
+  // https://qiita.com/ryokkkke/items/390647a7c26933940470
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es5",
+    "module": "es6",
+    "strict": true,
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "lib": [
+      "es6",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ],
+  },
+  "include": [
+    "resources/ts/**/*.ts",
+    "resources/ts/**/*.tsx",
+    "resources/ts/**/*.vue",
+  ],
+  "exclude": [
+    "./ts/tsconfig.json",
+  ]
+}
