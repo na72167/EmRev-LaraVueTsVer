@@ -15,7 +15,8 @@
 
 <script lang="ts" scoped>
 import { Component,Prop,Vue } from 'vue-property-decorator';
-import Cookies from "js-cookie";
+import { User } from '@/store/modules/users';
+import { AboutMenus } from '@/store/models.d';
 
 // Vue.js to TypeScriptの書き方一覧
 // https://qiita.com/ryo2132/items/4d43209ea89ad1297426
@@ -23,13 +24,14 @@ import Cookies from "js-cookie";
 @Component
 export default class MenuAbout extends Vue {
 
-  private loginUserId: number | null = null;
+  private loginUserDate: User[] | null = null;
 
   @Prop(Array)
-  private aboutMenus!: 'openAboutMenu' | false;
+  private aboutMenu!: AboutMenus[];
 
-  this.aboutMenus = Cookies.get('user_id');
-
+  get LoginUser(){
+    return this.loginUserDate = User.LoginDate;
+  }
 }
 </script>
 

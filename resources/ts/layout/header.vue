@@ -4,13 +4,13 @@
     <div class="header__content-wrap">
       <div>
         <HeaderTitle
-          :HeaderTitle = "HeaderTitle"
+          :headerTitle="headerTitle"
         />
       </div>
       <div>
         <HeaderMenu
-          :headerMenu=headerMenu
-          :aboutMenu=aboutMenu
+          :headerMenu="headerMenu"
+          :aboutMenu="aboutMenu"
         />
       </div>
     </div>
@@ -19,8 +19,10 @@
 
 <script lang="ts" scoped>
 import { Component, Vue } from 'vue-property-decorator';
-import HeaderTitle from './components/header/HeaderTitle';
-import HeaderMenu from './components/header/HeaderMenu';
+import HeaderTitle from '@/layout/components/header/HeaderTitle';
+import HeaderMenu from '@/layout/components/header/HeaderMenu';
+import { User } from '@/store/modules/users';
+import { HeaderMenus } from '@/store/models.d';
 
 @Component({
   components: {
@@ -31,11 +33,9 @@ import HeaderMenu from './components/header/HeaderMenu';
 
 export default class Header extends Vue {
 
-  private headerMenu: {
-    id: string;
-    text: string;
-    link: string;
-  };
+  private user : User[] = [];
+
+  private headerMenu: HeaderMenus[] = [];
 
   private headerTitle = [
     { logo: 'EmRev' }
@@ -47,7 +47,7 @@ export default class Header extends Vue {
     { text: 'LOGOUT' },
   ];
 
-  private headerMenuNotloggedIn = [
+  private headerMenuGuests = [
     { text: 'LOGIN', link: '/messages' },
     { text: 'SIGNUP', link: '/groups' },
   ];
@@ -63,6 +63,9 @@ export default class Header extends Vue {
     { id: '8', text: '退会する', link: '#' },
   ];
 
+  get checkLoginUser() {
+    return this.user = User.LoginDate();
+  }
 }
 </script>
 

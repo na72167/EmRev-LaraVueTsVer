@@ -20,10 +20,12 @@ import {
 //     rawError: true,
 // };
 
+import store from '@/store';
+
 @Module({
   dynamic: true,
   store,
-  name: 'messages',
+  name: 'tool',
   namespaced: true,
 })
 
