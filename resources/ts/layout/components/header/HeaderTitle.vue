@@ -2,14 +2,19 @@
   <!-- タイトル -->
   <h1 class="header__title">
     <router-link to="/" class="header__title-link">
-      {{title.logo}}
+      {{headerTitle[0].logo}}
     </router-link>
   </h1>
 </template>
 
 <script lang="ts" scoped>
-import { Component, Vue } from 'vue-property-decorator';
-
+import { Component,Prop,Vue} from 'vue-property-decorator';
+import { HeaderLogo } from '@/store/models.d';
 @Component
-export default class HeaderTitle extends Vue {}
+export default class HeaderTitle extends Vue {
+
+  @Prop(String)
+  private headerTitle!: HeaderLogo[];
+
+}
 </script>

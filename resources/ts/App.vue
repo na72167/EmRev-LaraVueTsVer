@@ -1,7 +1,8 @@
 <template>
   <div>
     <Header/>
-      <div class="#" v-show="loading">
+    <!-- TODO:v-show="loading"の実装 -->
+      <div class="#">
         <RouterView />
       </div>
     <Footer/>
@@ -9,8 +10,8 @@
 </template>
 <script lang="ts" scoped>
 import { Component, Vue } from 'vue-property-decorator';
-import Header from './layout/header';
-import Footer from './layout/footer';
+import Header from '@/layout/Header';
+import Footer from '@/layout/Footer';
 
 @Component({
   components: {

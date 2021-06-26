@@ -6,7 +6,7 @@ import {
   Module
 } from 'vuex-module-decorators';
 
-interface User {
+export interface User {
   user_id: number;
   email: string;
   roll: number;
@@ -14,14 +14,14 @@ interface User {
   login_limit: number;
 }
 
-export type SnackbarType = 'error' | 'info' | 'success' | undefined;
+// export type SnackbarType = 'error' | 'info' | 'success' | undefined;
 import store from '@/store';
 import Cookies from "js-cookie";
 
 @Module({
   dynamic: true,
   store,
-  name: 'messages',
+  name: 'loginUser',
   namespaced: true,
 })
 
@@ -31,8 +31,13 @@ class LoginUser extends VuexModule {
 
   @Mutation
   private SET_LOGIN_USER(): void{
-    this.user = Cookies.get('user_id');
+    this.user;
+    // = Cookies.get('user_id');
   }
+
+  get LoginDate(): User[]{
+    return this.user;
+}
 
   @Action
   private setLoginUser(): void {
