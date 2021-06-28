@@ -12,11 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "experimentalDecorators": true,
-    "strictNullChecks": true,
     "allowJs": true,
-    "paths": {
-      "@/*": ["resources/*"]
-    },
     "lib": [
       "es6",
       "dom",
@@ -27,7 +23,7 @@
   "include": [
     "resources/ts/**/*.ts",
     "resources/ts/**/*.tsx",
-    "resources/ts/**/*.vue",
+    "resources/ts/**/*.vue", "resources/ts/utils/commonLayout-mappimg.js", "resources/ts/utils/auth-mapping.js",
   ],
   "exclude": [
     "./ts/tsconfig.json",

@@ -15,22 +15,22 @@
 
 <script lang="ts" scoped>
 import { Component,Prop,Vue } from 'vue-property-decorator';
-import { User } from '@/store/modules/users';
-import { AboutMenus } from '@/store/models.d';
+import { AuthModule } from '@/store/modules/auth';
+import { AboutMenus,User } from '@/store/models.d';
 
 // Vue.js to TypeScriptの書き方一覧
 // https://qiita.com/ryo2132/items/4d43209ea89ad1297426
 
 @Component
-export default class MenuAbout extends Vue {
-
-  private loginUserDate: User[] | null = null;
+export default class AboutMenu extends Vue {
+  //TODO:挿入される要素を見直して↓の型数を減らす。
+  private loginUserDate: User[] | string | null | undefined = null;
 
   @Prop(Array)
   private aboutMenu!: AboutMenus[];
 
   get LoginUser(){
-    return this.loginUserDate = User.LoginDate;
+    return this.loginUserDate = AuthModule.getLoginUserDate;
   }
 }
 </script>

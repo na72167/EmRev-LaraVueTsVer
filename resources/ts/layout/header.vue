@@ -20,9 +20,11 @@
 <script lang="ts" scoped>
 import { Component, Vue } from 'vue-property-decorator';
 import HeaderTitle from '@/layout/components/header/HeaderTitle';
-import HeaderMenu from '@/layout/components/header/HeaderMenu';
-import { User } from '@/store/modules/users';
-import { HeaderMenus } from '@/store/models.d';
+import HeaderMenu from "@/layout/components/header/HeaderMenu";
+import { AuthModule } from '@/store/modules/auth';
+import { User,HeaderMenus,AboutMenus } from '@/store/models.d';
+import { headerTitle,aboutMenus,headerMenuLoggedIn,headerMenuGuests } from '@/utils/header';
+import { toolStoreModule } from '@/store/modules/tool';
 
 @Component({
   components: {
@@ -30,42 +32,26 @@ import { HeaderMenus } from '@/store/models.d';
     HeaderMenu
   },
 })
-
 export default class Header extends Vue {
-
-  private user : User[] = [];
-
+  //TODO:挿入される要素を見直して↓の型数を減らす。
+  private user: User[] | string | null | undefined = [];
+  private headerTitle = headerTitle;
   private headerMenu: HeaderMenus[] = [];
-
-  private headerTitle = [
-    { logo: 'EmRev' }
-  ];
-
-  private headerMenuLoggedIn = [
-    { text: 'MENU' },
-    { text: 'REVIEW POSTING', link: '/SelectReviewCompany' },
-    { text: 'LOGOUT' },
-  ];
-
-  private headerMenuGuests = [
-    { text: 'LOGIN', link: '/messages' },
-    { text: 'SIGNUP', link: '/groups' },
-  ];
-
-  private aboutMenu = [
-    { id: '1', text: 'マイページ', link: '`/mypage/${this.loginUserId}`' },
-    { id: '2', text: 'お気に入りレビュー一覧', link: '#' },
-    { id: '3', text: '投稿されたレビュー一覧', link: '#' },
-    { id: '4', text: '閲覧履歴', link: '#' },
-    { id: '5', text: '登録社員一覧', link: '#' },
-    { id: '6', text: 'パスワード変更', link: '#' },
-    { id: '7', text: 'レビュー会社登録申請', link: '/ApplyCompany' },
-    { id: '8', text: '退会する', link: '#' },
-  ];
+  private aboutMenu: AboutMenus[] = aboutMenus;
 
   get checkLoginUser() {
-    return this.user = User.LoginDate();
+    return this.user = AuthModule.getLoginUserDate;
   }
+
+  get switchMenu() {
+    if (this.user){
+      this.headerMenu = headerMenuLoggedIn;
+    }else{
+      this.headerMenu = headerMenuGuests;
+    };
+    return
+  }
+
 }
 </script>
 
@@ -75,7 +61,6 @@ export default class Header extends Vue {
         background-color: #047aed;
         overflow: hidden;
         width: 100%;
-
         &__content-wrap{
             height: 100%;
             margin: 0 auto;
@@ -100,7 +85,6 @@ export default class Header extends Vue {
             color:#fff;
             }
         }
-
         &__nav{
             float: right;
             position: relative;
@@ -125,4 +109,3 @@ export default class Header extends Vue {
       transform: translateX(100%);
     }
 </style>
-
