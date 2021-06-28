@@ -13,12 +13,13 @@
 import { Component,Prop,Vue } from 'vue-property-decorator';
 import { toolStoreModule } from '@/store/modules/tool';
 import { HeaderMenus,AboutMenus } from '@/store/models.d';
+import { OpenAboutMenu } from '@/store/models.d';
 
 @Component
 export default class LoginUserHeaderNav extends Vue {
 
-  private aboutMenuState: 'openAboutMenu' | false = false;
-  private switchingMenuState?: 'openAboutMenu' | false;
+  private aboutMenuState: OpenAboutMenu = false;
+  private switchingMenuState?: OpenAboutMenu;
 
   @Prop(Array)
   private headerMenu!: HeaderMenus[];

@@ -13,7 +13,7 @@ import { HeaderLogo } from '@/store/models.d';
 @Component
 export default class HeaderTitle extends Vue {
 
-  @Prop(String)
+  @Prop(Array)
   private headerTitle!: HeaderLogo[];
 
 }
